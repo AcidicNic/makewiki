@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col d-flex justify-content-center">
+    <div class="card text-center" style="width: 70%">
+        <div class="card-body">
+            <h4 class="card-title mb-4">{{ page.title }}</h4>
+            <p class="card-text text-left">{{ page.content }}</p>
+            <a href="{% url 'wiki-list-page' %}" class="btn btn-primary">Back</a>
+        </div>
+        <div class="card-footer text-muted">
+            Updated: {{ page.modified|date:"SHORT_DATETIME_FORMAT" }} by {{ page.author.username }}
+        </div>
+    </div>
+</div>
+{% endblock %}

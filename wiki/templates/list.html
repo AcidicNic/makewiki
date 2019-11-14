@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if pages %}
+    {% for page in pages %}
+    <div class="col d-flex justify-content-center mb-4">
+        <div class="card" style="width: 60%;">
+            <div class="card-body">
+                <h5 class="card-title">{{ page.title }}</h5>
+                <p class="card-text mb-0">{{ page.content|slice:"0:64" }}...</p>
+                <div class="row d-flex justify-content-between align-items-end m-0">
+                    <span class="text-muted" style="font-size: 12px">Updated: {{ page.modified|date:"SHORT_DATETIME_FORMAT" }} by {{ page.author.username }}</span>
+                    <a href="{% url 'wiki-details-page' page.slug %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+{% endblock %}

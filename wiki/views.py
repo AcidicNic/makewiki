@@ -15,14 +15,15 @@ class PageList(ListView):
 
     def get(self, request):
         """ Returns a list of wiki pages. """
-        pass
+        article_list = self.get_queryset().all()
+        return render(request, 'list.html', {'pages': article_list})
 
 
 class PageDetailView(DetailView):
     """
     CHALLENGES:
       1. On GET, render a template named `page.html`.
-      2. Replace this docstring with a description of what thos accomplishes.
+      2. Replace this docstring with a description of what this accomplishes.
 
     STRETCH CHALLENGES:
       1. Import the PageForm class from forms.py.
@@ -39,7 +40,8 @@ class PageDetailView(DetailView):
 
     def get(self, request, slug):
         """ Returns a specific of wiki page by slug. """
-        pass
+        page = self.get_queryset().get(slug__iexact=slug)
+        return render(request, 'page.html', {'page': page})
 
     def post(self, request, slug):
         pass
